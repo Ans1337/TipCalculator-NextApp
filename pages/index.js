@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import ManualHeader from "../components/ManualHeader"
+import Form from "../components/Form"
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ManualHeader></ManualHeader>
-      <p>Hello Next</p>
+      <Form></Form>
     </div>
   )
 }
