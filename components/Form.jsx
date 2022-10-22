@@ -4,26 +4,21 @@ export default function MyForm() {
     const [bill, setBill] = useState(0);
     const [people,setPeople] = useState(0);
     const [tippercent,setTippercent] = useState(0);
-    //const [theArray, setTheArray] = useState<string>([]);
-    //const [theArray, setTheArray] = useState<string[]>([]);
-
-
-
     
-    const content = [];
-    for(let i =0;i<people;i++)
-    {
-      content.push(
-        <lablel>Enter Address {i+1}  
-          <input
-            type="text"
-            // value={theArray}
-            // onChange={ (e) => setTheArray(oldArray => [...oldArray, e.target.value])}
-            >
-          </input>
-        </lablel>
-      );
-    }
+    // const content = [];
+    // for(let i =0;i<people;i++)
+    // {
+    //   content.push(
+    //     <lablel>Enter Address {i+1}  
+    //       <input
+    //         type="text"
+    //         // value={theArray}
+    //         // onChange={ (e) => setTheArray(oldArray => [...oldArray, e.target.value])}
+    //         >
+    //       </input>
+    //     </lablel>
+    //   );
+    // }
   
     return (
       <div>
@@ -36,7 +31,6 @@ export default function MyForm() {
               />
           </label>
           <br></br>
-          <div>
             <label>Enter # of people:
               <input
                 type="text" 
@@ -44,8 +38,6 @@ export default function MyForm() {
                 onChange={(e) => setPeople(e.target.value)}
                 />
             </label>
-            {content}
-          </div>
           <br></br>
           <label>Enter Tip %:
             <input
