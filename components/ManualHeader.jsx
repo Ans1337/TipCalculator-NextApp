@@ -10,11 +10,11 @@ export default function ManualHeader()
         console.log("HI" + isWeb3Enabled)
     },[isWeb3Enabled])
     return(
-        <div>
+        <div >
             {
                 account 
-                ? (<div>connected to {account}</div>) 
-                : (<button onClick={async() => {await enableWeb3()}}>Connect</button>)
+                ? (<div >connected to {account}</div>) 
+                : (<button  onClick={async() => {await enableWeb3()}}>Connect</button>)
             }
         </div>
     )

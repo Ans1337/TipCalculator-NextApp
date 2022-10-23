@@ -4,8 +4,36 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+ 
+  
 }
+body{
+  background-image: linear-gradient(to right ,#CBC3E3,#9FE2BF,#008080,#FDE5B4,#FFCBA5,#CF9FFF,#D8BFD8,#7F00FF);
+  background-image: -o-linear-gradient(to left ,#CBC3E3,#9FE2BF,#008080,#FDE5B4,#FFCBA5,#CF9FFF,#D8BFD8,#7F00FF);
+  background-image: -webkit-linear-gradient(to top,#CBC3E3,#9FE2BF,#008080,#FDE5B4,#FFCBA5,#CF9FFF,#D8BFD8,#7F00FF);
 
+  -webkit-animation: 30s ease infinite gradient-bg;
+  -moz-animation: 30s ease infinite gradient-bg;
+       animation: 30s ease infinite gradient-bg;
+
+       background-size: 400% 400%;
+
+}
+@keyframes gradient-bg { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-webkit-keyframes gradient-bg {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes gradient-bg {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -15,6 +43,111 @@ a {
   box-sizing: border-box;
 }
 
+.innerbody{
+  background-color: white;
+  top: 50%;
+  text-align: center;
+  width: 50%;
+  
+  top: 25%;
+
+  left: 25%;
+  padding: 200px;
+  position: absolute;
+  box-shadow: 15px 10px #CCCCFF		;
+  border-radius: 15px;
+
+
+}
+
+.results{
+  padding: 20px;
+  background-color: #7EE081;
+  width: 30%;
+  position: absolute;
+  border-radius: 30px;
+  
+  left: 65% ;
+  top : 30%;
+  opacity: 0.98;
+  color: white;
+  font-size: larger;
+}
+.innertext{
+  position: absolute;
+  left: 0%;
+  line-height: 200%;
+  top :0%;
+  
+}
+.Header{
+  position: absolute;
+  left: 34%;
+  color: #E6E6FA;
+  font-size: 60px;
+  text-shadow: 2px 2px;
+  text-shadow:
+  0 0 7px #fff,
+  0 0 10px #fff,
+  0 0 21px #fff,
+  0 0 42px #fff,
+  0 0 76px #fff,
+  0 0 88px #fff,
+  0 0 100px #fff,
+  0 0 145px #fff;
+
+}
+.tip{
+  color: white;
+  left: 45%;
+  top:75%;
+  position: absolute;
+  font-size: xx-large;
+  text-shadow: 2px 2px #B6D0E2;
+}
+.buttons{
+  background-color: #7EE081;
+  color: white;
+  border: none;
+  height: 32px;
+  cursor: pointer;
+  font-size: 12;
+  width: 75px;
+  border-radius: 16px;
+  transition: box-shadow 0.15s;
+ 
+  position: absolute;
+
+
+
+}
+.buttons:hover{
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+}
+#button1{
+  left: 5%;
+}
+#button2{
+  left: 15%;
+}
+#button3{
+  left: 25%;
+}
+#button4{
+  left: 5%;
+  top: 65%;
+}
+#button5{
+  left: 15%;
+  top: 65%;
+}
+.inputbar{
+    padding:10px 20px;
+		border:solid 1px #ccc;
+		border-radius:5px;
+    
+    color: 	#989898;
+  }
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -22,5 +155,9 @@ a {
   body {
     color: white;
     background: black;
+    
+    
   }
+
+
 }

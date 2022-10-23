@@ -22,9 +22,12 @@ export default function MyForm() {
   
     return (
       <div>
-        <form>
+        <div class="innerbody">
+        <form class="innertext">
           <label>Enter your Bill:
-            <input
+            <br></br>
+          
+            <input class="inputbar"
               type="text" 
               value={bill}
               onChange={(e) => setBill(e.target.value)}
@@ -32,7 +35,8 @@ export default function MyForm() {
           </label>
           <br></br>
             <label>Enter # of people:
-              <input
+            <br></br>
+              <input class="inputbar"
                 type="text" 
                 value={people}
                 onChange={(e) => setPeople(e.target.value)}
@@ -40,7 +44,8 @@ export default function MyForm() {
             </label>
           <br></br>
           <label>Enter Tip %:
-            <input
+          <br></br>
+            <input class="inputbar"
               type="text" 
               value={tippercent}
               onChange={(e) => setTippercent(e.target.value)}
@@ -48,8 +53,27 @@ export default function MyForm() {
           </label>
         </form>
         <br></br>
+        <button id="button1" class="buttons">
+          5%
+        </button>
+        <button id="button2" class="buttons">
+          10%
+        </button>
+        <button id="button3" class="buttons">
+          15%
+        </button>
+        <button id="button4" class="buttons">
+          25%
+        </button>
+        <button id="button5" class="buttons">
+          50%
+        </button>
+        <div class="results">
         <p>The tip total amount is : {bill * (tippercent/100)}</p>
+        <br></br>
         <p>The Tip to be given is  : {(bill/people) * (tippercent/100)}</p>
+        </div>
+        </div>
       </div>
     )
 }

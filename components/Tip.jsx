@@ -4,7 +4,6 @@ import { useMoralis } from "react-moralis"
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 
-
 export default function Tip(){
     //function to call the lotter
 
@@ -13,27 +12,30 @@ export default function Tip(){
     const tipAddress = chainId in contractAddresses ? contractAddresses[chainId][0] : null
 
     const [tipPerson,setTipPerson] = useState("0");
+    const [tipAccumulated,setTipAccumulated] = useState("0");
 
-    // const {
-    //     runContractFunction: calculate_tip,
-    //     data: enterTxResponse,
-    //     isLoading,
-    //     isFetching,
-    // } = useWeb3Contract({
-    //     abi: abi,
-    //     contractAddress: tipAddress,
-    //     functionName: "calculate_tip",
-    //     msgValue: entranceFee,
-    //     params: {},
-    // })
+    const {runContractFunction: Pay_Tip,} = useWeb3Contract({
+        abi: abi,
+        contractAddress: tipAddress,
+        functionName: "Pay_Tip",
+        msgValue: tipPerson,
+        params: {},
+    })
 
-
+    //getter functions
     const { runContractFunction: getTip } = useWeb3Contract({
         abi: abi,
         contractAddress: tipAddress, // specify the networkId
         functionName: "getTip",
         params: {},
     })
+
+    // const { runContractFunction: getTip } = useWeb3Contract({
+    //     abi: abi,
+    //     contractAddress: tipAddress, // specify the networkId
+    //     functionName: "getTip",
+    //     params: {},
+    // })
 
     async function updateUIValues() {
         
@@ -52,6 +54,33 @@ export default function Tip(){
     }, [isWeb3Enabled])
 
     return (
-        <div>Tip Fee: {ethers.utils.formatUnits(tipPerson, "wei")} WEI</div>
+
+        <div>
+            {tipAddress 
+            ? 
+            ( 
+                <div class="tip">
+                    <button
+                        onClick={async () =>
+                            await Pay_Tip({
+                                onError: (error) => console.log(error),
+                            })
+                        }>
+                        Pay Tip
+                    </button>
+                    Tip Fee: {ethers.utils.formatUnits(tipPerson, "wei")} WEI
+                    <p>Bill : </p>
+                </div>
+            )
+            :
+            (
+              <div>No Tip Address Exist</div>
+            )
+            
+            
+            }    
+            
+            
+        </div>
     )
 }
