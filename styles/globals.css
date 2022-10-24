@@ -1,4 +1,6 @@
+@import url('http://fonts.cdnfonts.com/css/space-mono');
 html,
+
 body {
   padding: 0;
   margin: 0;
@@ -61,6 +63,7 @@ a {
 }
 
 .results{
+  font-family: 'Space Mono';
   padding: 20px;
   background-color: #7EE081;
   width: 30%;
@@ -68,20 +71,25 @@ a {
   border-radius: 30px;
   
   left: 65% ;
-  top : 30%;
+  top : 10%;
   opacity: 0.98;
   color: white;
   font-size: larger;
 }
 .innertext{
+  
   position: absolute;
   left: 4%;
   line-height: 200%;
   top :0%;
   color: 	#989898;
+  font-family: 'Space Mono';
+  
+  
   
 }
 .Header{
+  font-family: 'Space Mono';
  
   position: absolute;
   left: 50%;
@@ -102,6 +110,7 @@ a {
 
 }
 .tip{
+  font-family: 'Space Mono';
   color: white;
   left: 50%;
   transform: translateX(-50%);
@@ -111,6 +120,10 @@ a {
   text-shadow: 2px 2px #B6D0E2;
 }
 .buttons{
+  font-family: 'Space Mono';
+  
+  
+
   background-color: #7EE081;
   color: white;
   border: none;
@@ -147,6 +160,7 @@ a {
   top: 65%;
 }
 .inputbar{
+  font-family: 'Space Mono';
     padding:10px 20px;
 		border:solid 1px #ccc;
 		border-radius:5px;
@@ -155,6 +169,7 @@ a {
     content: "\0024";
  }
  .buttonPay{
+  font-family: 'Space Mono';
     background-color: transparent;
     color: red;
     border-color: red;
@@ -175,6 +190,32 @@ a {
  .buttonPay:active{
       opacity: 0.5;
  }
+#generate{
+  
+  position: absolute;
+  top: 85%;
+  left:50%;
+  transform: translateX(-50%);
+  
+  
+ 
+}
+#custom{
+  
+  height: 32px;
+  font-size: 12;
+  width: 75px;
+  border-radius: 16px;
+  transition: box-shadow 0.15s;
+ 
+  position: absolute;
+  left: 97.5%;
+  top: 128.5%;
+  transform: translateX(1%);
+
+
+
+}
 
 
 @media (prefers-color-scheme: dark) {

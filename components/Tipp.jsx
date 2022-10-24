@@ -102,8 +102,14 @@ export default function Tipp() {
                                 }>
                                 Transfer To Owner
                             </button>
+                            
+                            
 
-                            <button class="buttonPay"
+                            
+                            
+                        </div>
+                        <div class="innerbody">
+                        <button id="generate" class="buttonPay"
                                 onClick={async () =>
                                     await calculate_tip({
                                         onError: (error) => console.log(error),
@@ -111,11 +117,7 @@ export default function Tipp() {
                                 }>
                                 Generate Tip
                             </button>
-
-                            <p>Tip Fee             : {ethers.utils.formatUnits(tipPerson, "wei")} WEI</p>
-                            <p>Total Tip Collected : {ethers.utils.formatUnits(tipAccumulated, "wei")} WEI</p>
-                        </div>
-                        <div class="innerbody">
+                            
                             <form class="innertext">
                                 <label>Enter your Bill:
                                 <br></br>
@@ -126,9 +128,9 @@ export default function Tipp() {
                                     />
                                 </label>
                                 <br></br>
-                                <label>Enter Tip %:
+                                <label>
                                 <br></br>
-                                    <input class="inputbar"
+                                    <input id="custom" class="inputbar"
                                     type="text" 
                                     value={tippercent/100}
                                     onChange={(e) => setTippercent(e.target.value * 100)}
@@ -154,9 +156,12 @@ export default function Tipp() {
                             <button id="button5" class="buttons">50%</button>
                         
                             <div class="results">
+                                
                                 <p>The tip total amount is : {bill * ((tippercent/100)/100)}</p>
-                                <br></br>
+                                
                                 <p>The Tip to be given is  : {(bill/people) * ((tippercent/100)/100)}</p>
+                                <p>Tip Fee             : {ethers.utils.formatUnits(tipPerson, "wei")} WEI</p>
+                                <p>Total Tip Collected : {ethers.utils.formatUnits(tipAccumulated, "wei")} WEI</p>
                             </div>
                         </div>
                 </div>
