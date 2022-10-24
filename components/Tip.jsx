@@ -60,7 +60,7 @@ export default function Tip(){
             ? 
             ( 
                 <div class="tip">
-                    <button
+                    <button 
                         onClick={async () =>
                             await Pay_Tip({
                                 onError: (error) => console.log(error),

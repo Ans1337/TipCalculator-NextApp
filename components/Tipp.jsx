@@ -85,7 +85,7 @@ export default function Tipp() {
             (
                 <div>
                     <div class="tip">
-                            <button
+                            <button class="buttonPay"
                                 onClick={async () =>
                                     await Pay_Tip({
                                         onError: (error) => console.log(error),
@@ -94,7 +94,7 @@ export default function Tipp() {
                                 Pay Tip
                             </button>
 
-                            <button
+                            <button class="buttonPay"
                                 onClick={async () =>
                                     await Transfer_to_Manager({
                                         onError: (error) => console.log(error),
@@ -103,7 +103,7 @@ export default function Tipp() {
                                 Transfer To Owner
                             </button>
 
-                            <button
+                            <button class="buttonPay"
                                 onClick={async () =>
                                     await calculate_tip({
                                         onError: (error) => console.log(error),

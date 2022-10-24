@@ -75,14 +75,18 @@ a {
 }
 .innertext{
   position: absolute;
-  left: 0%;
+  left: 4%;
   line-height: 200%;
   top :0%;
+  color: 	#989898;
   
 }
 .Header{
+ 
   position: absolute;
-  left: 34%;
+  left: 50%;
+  transform: translateX(-50%);
+  
   color: #E6E6FA;
   font-size: 60px;
   text-shadow: 2px 2px;
@@ -99,7 +103,8 @@ a {
 }
 .tip{
   color: white;
-  left: 45%;
+  left: 50%;
+  transform: translateX(-50%);
   top:75%;
   position: absolute;
   font-size: xx-large;
@@ -147,7 +152,31 @@ a {
 		border-radius:5px;
     
     color: 	#989898;
-  }
+    content: "\0024";
+ }
+ .buttonPay{
+    background-color: transparent;
+    color: red;
+    border-color: red;
+    border-width: 0.5px;
+    border-style: solid;
+    height: 32px;
+    width: fit-content;
+    border-radius: 2.5px;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: background-color 1s,
+    color 1s;
+ }
+ .buttonPay:hover{
+          background-color: red;
+          color: white;
+ }
+ .buttonPay:active{
+      opacity: 0.5;
+ }
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

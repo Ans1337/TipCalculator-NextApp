@@ -26,12 +26,15 @@ export default function MyForm() {
         <form class="innertext">
           <label>Enter your Bill:
             <br></br>
-          
+            
+            
             <input class="inputbar"
+              
               type="text" 
               value={bill}
               onChange={(e) => setBill(e.target.value)}
               />
+              
           </label>
           <br></br>
             <label>Enter # of people:
