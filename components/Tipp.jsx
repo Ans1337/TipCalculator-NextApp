@@ -3,6 +3,7 @@ import { contractAddresses, abi } from "../constants"
 import { useMoralis } from "react-moralis"
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
+import { useNotification } from "web3uikit";
 
 export default function Tipp() {
     const [bill, setBill] = useState(0);
@@ -17,6 +18,8 @@ export default function Tipp() {
 
     const [tipPerson,setTipPerson] = useState("0");
     const [tipAccumulated,setTipAccumulated] = useState("0");
+
+    const dispatch = useNotification()
 
     //functions
     const {runContractFunction: Pay_Tip,} = useWeb3Contract({
@@ -61,7 +64,6 @@ export default function Tipp() {
     })
 
     async function updateUIValues() {
-        
         const tipFeeFromCall = (await getTip()).toString()
         const tipAccumulatedCall = (await getTotalTip()).toString()
         //const recentWinnerFromCall = await getRecentWinner()
@@ -75,6 +77,22 @@ export default function Tipp() {
             updateUIValues()
         }
     }, [isWeb3Enabled])
+
+
+    const handleSuccess = async function (tx){
+        await tx.wait(1)
+        handleNewNotification(tx);
+        updateUIValues();
+    }
+
+    const handleNewNotification = () => {
+        dispatch({
+            type: "info",
+            message: "Transaction Complete!",
+            title: "Transaction Notification",
+            position: "topR",
+        })
+    }
     
    
     return (
@@ -102,16 +120,13 @@ export default function Tipp() {
                                 }>
                                 Transfer To Owner
                             </button>
-                            
-                            
-
-                            
-                            
+                                
                         </div>
                         <div class="innerbody">
                         <button id="generate" class="buttonPay"
                                 onClick={async () =>
                                     await calculate_tip({
+                                        onSuccess: handleSuccess,
                                         onError: (error) => console.log(error),
                                     })
                                 }>
