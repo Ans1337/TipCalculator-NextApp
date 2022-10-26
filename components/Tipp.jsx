@@ -66,10 +66,9 @@ export default function Tipp() {
     async function updateUIValues() {
         const tipFeeFromCall = (await getTip()).toString()
         const tipAccumulatedCall = (await getTotalTip()).toString()
-        //const recentWinnerFromCall = await getRecentWinner()
+        
         setTipPerson(tipFeeFromCall)
         setTipAccumulated(tipAccumulatedCall)
-        //setRecentWinner(recentWinnerFromCall)
     }
 
     useEffect(() => {
@@ -79,10 +78,14 @@ export default function Tipp() {
     }, [isWeb3Enabled])
 
 
-    const handleSuccess = async function (tx){
-        await tx.wait(1)
-        handleNewNotification(tx);
-        updateUIValues();
+    const handleSuccess = async (tx) => {
+        try {
+            await tx.wait(1)
+            updateUIValues()
+            handleNewNotification(tx)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const handleNewNotification = () => {
@@ -92,6 +95,11 @@ export default function Tipp() {
             title: "Transaction Notification",
             position: "topR",
         })
+    }
+
+    const handleTip = (t) => {
+        setTippercent(t*100);
+        console.log("tip set to " + tippercent);
     }
     
    
@@ -164,16 +172,15 @@ export default function Tipp() {
                             <br></br>
 
                             
-                            <button id="button1" class="buttons">5%</button>
-                            <button id="button2" class="buttons">10%</button>
-                            <button id="button3" class="buttons">15%</button>
-                            <button id="button4" class="buttons">25%</button>
-                            <button id="button5" class="buttons">50%</button>
+                            <button id="button1" class="buttons" onClick={handleTip(5)}>5%</button>
+                            <button id="button2" class="buttons" onClick={handleTip(10)}>10%</button>
+                            <button id="button3" class="buttons" onClick={handleTip(15)}>15%</button>
+                            <button id="button4" class="buttons" onClick={handleTip(25)}>25%</button>
+                            <button id="button5" class="buttons" onClick={handleTip(50)}>50%</button>
                         
                             <div class="results">
                                 
                                 <p>The tip total amount is : {bill * ((tippercent/100)/100)}</p>
-                                
                                 <p>The Tip to be given is  : {(bill/people) * ((tippercent/100)/100)}</p>
                                 <p>Tip Fee             : {ethers.utils.formatUnits(tipPerson, "wei")} WEI</p>
                                 <p>Total Tip Collected : {ethers.utils.formatUnits(tipAccumulated, "wei")} WEI</p>
@@ -185,11 +192,7 @@ export default function Tipp() {
             (
               <div>No Tip Address Exist</div>
             )
-            
-            
-            }    
-            
-            
+            }
         </div>
     )
 }
