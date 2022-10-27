@@ -6,9 +6,9 @@ import { ethers } from "ethers";
 import { useNotification } from "web3uikit";
 
 export default function Tipp() {
-    const [bill, setBill] = useState(0);
-    const [people,setPeople] = useState(0);
-    const [tippercent,setTippercent] = useState(0);
+    const [bill, setBill] = useState("0");
+    const [people,setPeople] = useState("0");
+    const [tippercent,setTippercent] = useState("0");
 
     //function to call the lotter
 
@@ -42,7 +42,7 @@ export default function Tipp() {
         contractAddress: tipAddress,
         functionName: "calculate_tip",
         params: {
-            _bill_price: bill,
+            _bill_price: ethers.utils.parseEther(bill || "0"),
             _tip_per: tippercent,
             _no_of_people: people,
         },
@@ -97,10 +97,6 @@ export default function Tipp() {
         })
     }
 
-    const handleTip = (t) => {
-        setTippercent(t*100);
-        console.log("tip set to " + tippercent);
-    }
     
    
     return (
@@ -171,19 +167,17 @@ export default function Tipp() {
                             </form>
                             <br></br>
 
-                            
-                            <button id="button1" class="buttons" onClick={handleTip(5)}>5%</button>
-                            <button id="button2" class="buttons" onClick={handleTip(10)}>10%</button>
-                            <button id="button3" class="buttons" onClick={handleTip(15)}>15%</button>
-                            <button id="button4" class="buttons" onClick={handleTip(25)}>25%</button>
-                            <button id="button5" class="buttons" onClick={handleTip(50)}>50%</button>
+                            <button id="button1" class="buttons" onClick={() => { setTippercent(5  * 100); }}>5%</button>
+                            <button id="button2" class="buttons" onClick={() => { setTippercent(10 * 100); }}>10</button>
+                            <button id="button3" class="buttons" onClick={() => { setTippercent(15 * 100); }}>15</button>
+                            <button id="button4" class="buttons" onClick={() => { setTippercent(25 * 100); }}>25</button>
+                            <button id="button5" class="buttons" onClick={() => { setTippercent(50 * 100); }}>50</button>
                         
                             <div class="results">
-                                
-                                <p>The tip total amount is : {bill * ((tippercent/100)/100)}</p>
-                                <p>The Tip to be given is  : {(bill/people) * ((tippercent/100)/100)}</p>
-                                <p>Tip Fee             : {ethers.utils.formatUnits(tipPerson, "wei")} WEI</p>
-                                <p>Total Tip Collected : {ethers.utils.formatUnits(tipAccumulated, "wei")} WEI</p>
+                                <p>Total Tip FrontEnd  : {(bill * ((tippercent/100)/100)).toFixed(5)}</p>
+                                <p>Tip Person FrontEnd : {(((bill/people) * ((tippercent/100)/100))).toFixed(5)}</p>
+                                <p>Tip Fee             : {ethers.utils.formatUnits(tipPerson, "ether")} ETH</p>
+                                <p>Total Tip Collected : {ethers.utils.formatUnits(tipAccumulated, "ether")} ETH</p>
                             </div>
                         </div>
                 </div>
