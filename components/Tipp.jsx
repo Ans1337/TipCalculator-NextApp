@@ -4,6 +4,7 @@ import { useMoralis } from "react-moralis"
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { useNotification } from "web3uikit";
+import Web3 from 'web3';
 
 export default function Tipp() {
     const [bill, setBill] = useState("0");
@@ -96,6 +97,52 @@ export default function Tipp() {
             position: "topR",
         })
     }
+
+
+    //reading events
+
+    // const providerUrl = process.env.NEXT_PUBLIC_RPC_URL
+    // const web3 = new Web3(providerUrl)
+
+    
+
+    // const handleNewEvent = (message) => {
+    //     dispatch({
+    //         type: "Success",
+    //         message: message,
+    //         title: "Tip Paid",
+    //         position: "bottomR",
+    //     })
+    // }
+
+    // let options = {
+    //     fromBlock: 7860320,
+    //     toBlock:  "latest"
+    // }
+
+    // useEffect(() => {
+    //     const listen = async() => {
+    //         const addy = "0x864E42a7e22AF84327BE625157ed2510BCfF5807"
+    //         const Contract = await new web3.eth.Contract(abi,addy);
+            
+    //         Contract.events.Tipreceived(options)
+    //             .on('connected', (id) => {console.log(id);})
+    //             .on ('data', result => {
+    //                 let acc = result["0"]["returnValues"]["addy"].slice(0, 6)
+    //                 acc = acc.concat("...", (result["0"]["returnValues"]["addy"].slice(result["0"]["returnValues"]["addy"].length - 4)))
+    //                 const eth = ethers.utils.formatUnits(result["0"]["returnValues"]["a"].toString(), "ether")
+    //                 const str = acc.concat(" Paid ", eth , " ETH");
+    //                 handleNewEvent(str)
+    //             })
+    //             .on("error" , (error => { console.log(error)}))
+    //     }
+
+    //     listen()
+        
+    // }, [tipAccumulated])
+
+    
+
 
     
    

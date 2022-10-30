@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Header from "../components/Header"
 import Tipp from "../components/Tipp"
+import EventListener from '../components/EventListener'
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       </Head>
       <Header></Header>   
       <Tipp></Tipp>
+      <EventListener></EventListener>
     </div>
   )
 }
