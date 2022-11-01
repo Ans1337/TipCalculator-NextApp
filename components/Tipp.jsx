@@ -3,13 +3,14 @@ import { contractAddresses, abi } from "../constants"
 import { useMoralis } from "react-moralis"
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { useNotification } from "web3uikit";
+import { useNotification , ChainSelector } from "web3uikit";
+import {Eth} from '@web3uikit/icons'
+
 
 export default function Tipp() {
     const [bill, setBill] = useState("0");
     const [people,setPeople] = useState("0");
     const [tippercent,setTippercent] = useState("0");
-
     //function to call the lotter
 
     const {chainId: chainIdHex, isWeb3Enabled} = useMoralis();
@@ -88,6 +89,16 @@ export default function Tipp() {
         }
     }
 
+    const handleSuccessTip = async (tx) => {
+        try {
+            await tx.wait(1)
+            updateUIValues()
+            handleNewNotificationTip("Funds Transfered")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const handleNewNotification = () => {
         dispatch({
             type: "info",
@@ -97,7 +108,23 @@ export default function Tipp() {
         })
     }
 
-    
+    const handleNewNotificationTip = (message) => {
+        dispatch({
+            type: "info",
+            message: message,
+            title: "Transaction Notification",
+            position: "topL",
+        })
+    }
+
+    const handleErrorOwner = (message) => {
+        dispatch({
+            type: "error",
+            message: message,
+            title: "Error!",
+            position: "topR",
+        })
+    }
    
     return (
 
@@ -110,7 +137,11 @@ export default function Tipp() {
                             <button class="buttonPay"
                                 onClick={async () =>
                                     await Pay_Tip({
-                                        onError: (error) => console.log(error),
+                                        onSuccess: handleSuccessTip,
+                                        onError: (error) => {
+                                            handleErrorOwner("Already Paid")
+                                            console.log(error)
+                                        },
                                     })
                                 }>
                                 Pay Tip
@@ -119,7 +150,13 @@ export default function Tipp() {
                             <button class="buttonPay"
                                 onClick={async () =>
                                     await Transfer_to_Manager({
-                                        onError: (error) => console.log(error),
+                                        onSuccess: (success) => {
+                                            handleSuccessTip
+                                        },
+                                        onError: (error) => {
+                                            console.log(error)
+                                            handleErrorOwner("Only Owner can transfer funds")
+                                        },
                                     })
                                 }>
                                 Transfer To Owner
@@ -131,7 +168,10 @@ export default function Tipp() {
                                 onClick={async () =>
                                     await calculate_tip({
                                         onSuccess: handleSuccess,
-                                        onError: (error) => console.log(error),
+                                        onError: (error) => {
+                                            console.log(error)
+                                            handleErrorOwner("Cannot be called by user")
+                                        },
                                     })
                                 }>
                                 Generate Tip
@@ -176,15 +216,21 @@ export default function Tipp() {
                             <div class="results">
                                 <p>Total Tip FrontEnd  : {(bill * ((tippercent/100)/100)).toFixed(5)}</p>
                                 <p>Tip Person FrontEnd : {(((bill/people) * ((tippercent/100)/100))).toFixed(5)}</p>
-                                <p>Tip Fee             : {ethers.utils.formatUnits(tipPerson, "ether")} ETH</p>
-                                <p>Total Tip Collected : {ethers.utils.formatUnits(tipAccumulated, "ether")} ETH</p>
+                                <p>Tip Fee       :{ethers.utils.formatUnits(tipPerson, "ether")} Ξ</p>
+                                <p>Tip Collected :{ethers.utils.formatUnits(tipAccumulated, "ether")} Ξ</p>
                             </div>
                         </div>
                 </div>
             )
             :
             (
-              <div>No Tip Address Exist</div>
+              <div>
+                
+                <div className="errordiv">
+                    <h3>Connect to Goerli Chain</h3>
+                    <a><Eth fontSize='50px'/></a>
+                </div>
+            </div>
             )
             }
         </div>

@@ -15,6 +15,7 @@
 # production
 /build
 
+
 # misc
 .DS_Store
 *.pem
@@ -28,6 +29,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env 
 
 # vercel
 .vercel
@@ -35,3 +37,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local env files
+.env*.local

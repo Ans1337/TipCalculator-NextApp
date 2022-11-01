@@ -217,6 +217,11 @@ a {
 
 }
 
+.errordiv{
+    display: flex;
+    /* justify-content: space-between; */
+}
+
 
 @media (prefers-color-scheme: dark) {
   html {

@@ -5,9 +5,9 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }) {
   return (
     <MoralisProvider initializeOnMount={false}>
-      <NotificationProvider>
-        <Component {...pageProps} />
-      </NotificationProvider>
+        <NotificationProvider>
+          <Component {...pageProps} />
+        </NotificationProvider>
     </MoralisProvider>
   );
 }
